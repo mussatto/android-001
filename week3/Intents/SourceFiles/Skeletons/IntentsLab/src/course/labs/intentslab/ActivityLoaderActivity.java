@@ -1,7 +1,5 @@
 package course.labs.intentslab;
 
-import org.apache.http.protocol.HTTP;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -31,6 +29,7 @@ public class ActivityLoaderActivity extends Activity {
 		
 		// Get reference to the textView
 		mUserTextView = (TextView) findViewById(R.id.textView1);
+		mUserTextView.setText(URL);
 
 		// Declare and setup Explicit Activation button
 		Button explicitActivationButton = (Button) findViewById(R.id.explicit_activation_button);
@@ -69,7 +68,7 @@ public class ActivityLoaderActivity extends Activity {
 		
 		// TODO - Create a new intent to launch the ExplicitlyLoadedActivity class
 		Intent startExplicit = new Intent(this, ExplicitlyLoadedActivity.class);
-		this.startActivityForResult(startExplicit, 1);
+		this.startActivityForResult(startExplicit, GET_TEXT_REQUEST_CODE);
 		// TODO - Start an Activity using that intent and the request code defined above
 		
 
@@ -85,6 +84,7 @@ public class ActivityLoaderActivity extends Activity {
 		// (HINT:  second parameter uses parse() from the Uri class)
 		String url = mUserTextView.getText().toString();
 		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+		sendIntent.addCategory(Intent.CATEGORY_DEFAULT);
 		sendIntent.setData(Uri.parse(url));
 		
 		
@@ -109,11 +109,13 @@ public class ActivityLoaderActivity extends Activity {
 		// TODO - Process the result only if this method received both a
 		// RESULT_OK result code and a recognized request code
 		// If so, update the Textview showing the user-entered text.
-		if (requestCode == 1) {
+		if (requestCode == GET_TEXT_REQUEST_CODE) {
 
 		     if(resultCode == RESULT_OK){      
 		         String result=data.getStringExtra("result");
-		         
+		         if("".equals(result)){
+		        	 result = URL;
+		         }
 		         mUserTextView.setText(result);
 		     }
 		     if (resultCode == RESULT_CANCELED) {    
