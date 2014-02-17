@@ -1,0 +1,3 @@
+02-16 19:34:00.240: I/Lab-Permissions(2213): Entered startBookMarksActivity()
+02-16 19:34:01.250: I/Lab-Permissions(2213): Entered loadBookmarks()
+02-16 19:34:01.390: I/Lab-Permissions(2213): Bookmarks loaded

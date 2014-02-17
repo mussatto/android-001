@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class ActivityLoaderActivity extends Activity {
+	
 
 	private static final String TAG = "Lab-Permissions";
 	@Override
@@ -32,7 +33,10 @@ public class ActivityLoaderActivity extends Activity {
 		
 		Log.i(TAG, "Entered startBookMarksActivity()");
 	
+		Intent bookmarks = new Intent(this, BookmarksActivity.class);
+		
 		// TODO - Start the BookmarksActivity
+		this.startActivity(bookmarks);
 
 	}
 }
